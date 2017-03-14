@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite" parallel="false">
+  <test name="Test">
+  	<parameter name="siteurl" value="https://webmail.itransition.com/"/>
+  	<parameter name="login" value="a.pribylsky"/>
+  	<parameter name="password" value="123456"/>
+    <classes>
+      <class name="com.dobriy.test.WebMailTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
