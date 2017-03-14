@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,8 +24,9 @@ public class WebMailTest {
 	  (driver.findElement(By.id("username"))).sendKeys(login);
 	  (driver.findElement(By.id("password"))).sendKeys(password);
 	  (driver.findElement(By.id("SubmitCreds"))).click();
-	  (new WebDriverWait(driver,10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//button[contains(@aria-label,'menu with submenu')]"))).click();
-	  WebElement elem = driver.findElement(By.xpath(".//span[contains(text(),'@a1qa.com')]"));
+	  (new WebDriverWait(driver,30)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@aria-label,'menu with submenu')]"))).click();
+	 // WebElement elem = driver.findElement(By.xpath("//span[contains(text(),'@a1qa.com')]"));
+	  WebElement elem = driver.findElement(By.xpath("//span[(text()='"+login+"@a1qa.com')]"));
 	  assertEquals(elem.getText(), login+"@a1qa.com");
   }
   
@@ -34,7 +36,8 @@ public class WebMailTest {
 	  this.siteurl = siteurl;
 	  this.login = login;
 	  this.password = password;
-	  driver = new ChromeDriver();;
+	  System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+	  driver = new ChromeDriver();
 	  driver.get(this.siteurl);
   }
 
